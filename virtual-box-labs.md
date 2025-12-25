@@ -784,6 +784,3 @@ Notes
 - Document changes in a CHANGELOG; practice rollbacks and restores regularly.
 
 ---
-- Generate ready-to-run script files and systemd unit files under `/scripts/`.
-- Produce a printable PDF version.
-Which option would you like next?
