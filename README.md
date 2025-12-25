@@ -141,13 +141,3 @@ Please include recovery steps and an estimated difficulty for each task you add.
 
 ---
 
-## What's next
-
-- Open the individual set files to begin working through tasks. Each set is self-contained and includes all commands and verification steps you need.
-
-If you'd like, I can:
-- Generate the SVG header with a suggested font and layout and add it to assets/
-- Create a GitHub Pages skeleton to demonstrate custom font usage
-- Export the lab tasks into a printable PDF
-
-Tell me which of these you'd prefer next and I will add it to the repository.
