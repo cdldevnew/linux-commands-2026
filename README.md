@@ -1,301 +1,153 @@
-# Linux Administration Lab — Questions & Detailed Answers
+# Linux Administration Lab — Complete Sets, Documentation & Styling Guide
 
-A hands-on lab repository containing Linux administration tasks with commands and verification steps. This repo is designed for learners preparing for RHCSA / RHCE, system administrators honing practical skills, and anyone wanting structured lab practice.
-
----
-
-## Table of Contents
-
-- [Project Overview](#project-overview)
-- [Who is this for?](#who-is-this-for)
-- [Repository Structure](#repository-structure)
-- [How to use this lab (recommended workflow)](#how-to-use-this-lab-recommended-workflow)
-- [Environment & Prerequisites (important safety notes)](#environment--prerequisites-important-safety-notes)
-- [Lab Sets — Summary of Content](#lab-sets--summary-of-content)
-  - [Set 1 — Basic Administration](#set-1-—-basic-administration)
-  - [Set 2 — Disks, ACL, Firewalld, SELinux](#set-2-—-disks-acl-firewalld-selinux)
-  - [Set 3 — Services, Runlevels, Processes, Tar](#set-3-—-services-runlevels-processes-tar)
-  - [Set 4 — Networking, Sticky bit, Chrony, Swap, Systemd](#set-4-—-networking-sticky-bit-chrony-swap-systemd)
-- [Verification & Validation Pattern](#verification--validation-pattern)
-- [Common destructive commands — use with caution](#common-destructive-commands---use-with-caution)
-- [Quick cheat-sheet: frequently used commands](#quick-cheat-sheet-frequently-used-commands)
-- [Best practices & exam tips](#best-practices--exam-tips)
-- [Troubleshooting & debugging tips](#troubleshooting--debugging-tips)
-- [Contributing](#contributing)
-- [License & Contact](#license--contact)
+A hands-on lab repository containing 4 complete lab sets (10 tasks each) with full step‑by‑step commands, verification, recovery steps, exam tips, and safety notes. This README explains structure, how to use the sets, documentation conventions, and practical guidance for making the README visually effective (format, headings, and font approaches you can apply on GitHub or GitHub Pages).
 
 ---
 
-## Project Overview
-
-This repository contains 4 sets of lab tasks (10 tasks each). Each task shows the problem statement and a concise step-by-step solution with the exact commands to run, plus verification steps. The goal is to provide repeatable, practice-ready labs for core Linux administration topics.
-
----
-
-## Who is this for?
-
-- Students preparing for RHCSA / RHCE.
-- Junior to intermediate sysadmins who need a hands-on checklist.
-- Instructors building lab exercises.
-- Anyone wanting structured, command-centered practice.
+## Quick links
+- Sets (detailed lab files)
+  - [Set 1 — Basic Administration](set-1.md)
+  - [Set 2 — Disks, ACL, Firewalld, SELinux](set-2.md)
+  - [Set 3 — Services, Runlevels, Processes, Tar](set-3.md)
+  - [Set 4 — Networking, Sticky bit, Chrony, Swap, Systemd](set-4.md)
 
 ---
 
-## Repository Structure
+## Purpose
 
-- README.md — (this document)
-- set-1.md — Basic Administration tasks and answers (if present)
-- set-2.md — Disks, ACL, Firewalld, SELinux
-- set-3.md — Services, Runlevels, Processes, Tar
-- set-4.md — Networking, Sticky bit, Chrony, Swap, Systemd
-- scripts/ — optional helper scripts referenced by tasks (e.g., example /root/backup.sh)
-- assets/ — optional screenshots, diagrams, sample files
+These labs are designed for:
+- RHCSA / RHCE preparation and practice
+- System administrators who want repeatable practice scenarios
+- Instructors creating classroom or online labs
 
-(Note: file names above match examples in the repo; if your repo uses different filenames, adapt accordingly.)
+Each task is presented with:
+- Objective
+- Prerequisites
+- Exact commands to run
+- Verification steps (what to check)
+- Recovery / undo steps
+- Estimated time and difficulty
+- Exam tips and pitfalls
 
 ---
 
-## How to use this lab (recommended workflow)
+## How to use these labs (recommended workflow)
 
-1. Clone the repository:
+1. Clone the repo:
    ```bash
    git clone https://github.com/cdldevnew/linux-commands-2026.git
    cd linux-commands-2026
    ```
-
-2. Read one set at a time. Each task includes:
-   - Commands to perform the task
-   - Verification commands to confirm results
-   - Notes or cautions where relevant
-
-3. Run commands in a controlled environment (VM, container, or snapshot) — see [Environment & Prerequisites](#environment--prerequisites-important-safety-notes).
-
-4. Practice repeating tasks from memory and then re-check with the answers in the set.
-
-5. Use the verification commands after each step to ensure intended state.
+2. Open one set file (e.g., set-1.md). Read the Objective and Prerequisites before running anything.
+3. Run commands in a disposable VM/container or use loopback devices when manipulating disks.
+4. After each command, run the verification command(s) provided.
+5. Use the recovery steps to revert changes before moving to the next task or before resetting your VM snapshot.
 
 ---
 
-## Environment & Prerequisites (important safety notes)
+## Documentation & Format Conventions (how lab files are structured)
 
-- Many tasks require root privileges; use a VM or a test server.
-- Recommended environment:
-  - A virtual machine (KVM, VirtualBox, VMware) with at least 2 GB RAM and 20 GB disk.
-  - Snapshot capability so you can roll back after destructive operations.
-  - Distribution: CentOS / RHEL / Rocky / AlmaLinux are closest to RHCSA/RHCE targets. Debian/Ubuntu equivalents often have different tools (apt vs dnf/rpm).
-- Use caution with disk/partition, LVM, and mkfs commands — they can destroy data.
-- If you don't have spare block devices, use loopback devices (losetup + truncate) for safe testing.
+Each task uses this consistent template:
 
-Example: create a safe loop device for LVM testing:
+- Title (Task number and short goal)
+- Objective — What you will accomplish and why it matters
+- Prerequisites — Required privileges, devices, or files
+- Commands — Ordered, copy‑paste friendly commands (with examples)
+- Verification — Commands to confirm the task is complete
+- Recovery / Undo — Commands to revert changes or clean up
+- Estimated time and Difficulty (Easy / Medium / Hard)
+- Exam Tip — quick note for test scenarios or common traps
+
+This convention helps you move quickly, verify results, and undo changes safely.
+
+---
+
+## Styling and Font Guidance for README.md (what's practical on GitHub)
+
+GitHub README.md uses GitHub-Flavored Markdown and does not support arbitrary fonts/styles via CSS. However, you can achieve an effective visual presentation as follows:
+
+1. Use strong structural elements
+   - Clear headings (H1/H2/H3)
+   - Tables for quick reference
+   - Code blocks for commands and outputs
+   - Blockquotes for warnings and tips
+
+2. Use badges and icons
+   - Shields (https://shields.io) to show status, estimated time, or difficulty.
+   - Example:
+     ```markdown
+     ![Estimated time](https://img.shields.io/badge/time-~15–30min-blue)
+     ![Difficulty](https://img.shields.io/badge/difficulty-medium-yellow)
+     ```
+
+3. Use an SVG or image header to control typography
+   - If you need a specific font/brand style, create a header image (SVG or PNG) that uses the desired font and include it at the top of the README:
+     ```markdown
+     ![Lab header](assets/lab-header.svg)
+     ```
+   - SVGs can embed fonts or use system fonts; include the generated SVG in `assets/` and reference it.
+
+4. Use GitHub Pages for fully custom styling
+   - If you need a real custom font and layout, publish docs via GitHub Pages and add a small CSS that imports Google Fonts.
+   - Steps:
+     - Create a docs/ folder or gh-pages branch
+     - Add an HTML index that loads a font from Google Fonts and a CSS file
+     - Push and enable Pages in repo settings
+
+5. Use emoji & callouts sparingly
+   - Use ✅, ⚠️, ❗ for emphasis inside headings or notes.
+   - Keep README accessible and screen-reader friendly.
+
+6. Example callout style using blockquote:
+   > ⚠️ Warning: Always test disk and LVM commands on disposable VMs or on loopback devices to avoid data loss.
+
+---
+
+## Safety: Always practice on throwaway systems
+
+- Use snapshots or throwaway VMs.
+- Prefer loopback disk images (losetup + truncate) when you lack spare physical devices.
+- Do not run destructive commands on production machines.
+
+Example: create a safe loop device for disk/LVM testing:
 ```bash
-# create a 3GB file and use it as a loop device
 truncate -s 3G /tmp/testdisk.img
 losetup -fP /tmp/testdisk.img
-# find loop device:
-losetup -a
-# then replace /dev/sdb in lab commands with /dev/loopX
+# find /dev/loopX and use that instead of /dev/sdX in labs
 ```
 
 ---
 
-## Lab Sets — Summary of Content
+## Contributing & Adding More Labs
 
-Each set includes the command(s) to accomplish a task and verification steps.
+To add tasks or new sets:
+1. Fork the repo.
+2. Add a new file set-5.md following the standard template used in existing set files.
+3. Open a PR with a clear description and sample outputs.
 
-### Set 1 — Basic Administration
-Covers:
-- User and group creation (`useradd`, `groupadd`, `usermod`)
-- Permissions (`chmod`), owners (`chown`)
-- Password and password aging (`passwd`, `chage`)
-- Process discovery (`pidof`, `ps`)
-- Systemd service status and failed units
-- Cron jobs
-- LVM basics (pvcreate, vgcreate, lvcreate) and filesystem creation
-- Package query (rpm/dnf)
-
-Example task:
-- Create user `student1` with home and bash:
-  ```bash
-  useradd -m -s /bin/bash student1
-  passwd student1
-  id student1
-  ls -ld /home/student1
-  ```
-
-### Set 2 — Disks, ACL, Firewalld, SELinux
-Covers:
-- Managing users without home dirs
-- Locking accounts
-- SGID directories for group inheritance
-- POSIX ACLs (setfacl/getfacl)
-- Listing disks and partitioning (`lsblk`, `fdisk`)
-- Formatting (XFS) and mounting permanently (`/etc/fstab`)
-- Firewall management (`firewall-cmd`)
-- SELinux mode (`getenforce`, `setenforce`)
-
-Example:
-- Permanently mount /dev/sdc1 to /mnt/data using its UUID in /etc/fstab.
-
-### Set 3 — Services, Runlevels, Processes, Tar
-Covers:
-- Shared group setup and permissions
-- Creating root-only directories
-- Managing systemd default target
-- Listing enabled services
-- Hostname and timezone management
-- Process listing and killing (`ps`, `pkill`)
-- Tar backup and extraction
-
-Example:
-- Create tar.gz backup of /etc:
-  ```bash
-  mkdir -p /backup
-  tar -czvf /backup/etc.tar.gz /etc
-  tar -xzvf /backup/etc.tar.gz -C /restore
-  ```
-
-### Set 4 — Networking, Sticky bit, Chrony, Swap, Systemd
-Covers:
-- Group management and primary groups
-- Password aging policy
-- Sticky bit for shared directories (e.g., /tmp-like behavior)
-- Networking commands (`ip addr`, `ip route`)
-- Adding temporary routes
-- Chrony NTP client setup and validation
-- Creating swap partitions and enabling permanently
-- Finding large files
-- Showing listening ports (`ss`)
-- Creating and enabling systemd service files
-
-Example:
-- Create systemd unit file /etc/systemd/system/customapp.service, then enable/start:
-  ```bash
-  systemctl daemon-reload
-  systemctl enable --now customapp.service
-  systemctl status customapp.service
-  ```
+Please include recovery steps and an estimated difficulty for each task you add.
 
 ---
 
-## Verification & Validation Pattern
+## File layout in this repo
 
-For each task, follow this pattern:
-1. Run the command(s) provided by the lab.
-2. Immediately run the verification commands provided.
-3. If verification fails:
-   - Re-check the command output and logs (`journalctl -xe` or `systemctl status` for services).
-   - Use `ls -l`, `id`, `mount`, `blkid`, `getfacl`, `getenforce`, etc., depending on task.
-
-Example: verifying an LVM and mount
-```bash
-# After creating LV and filesystem
-blkid /dev/vgclass/lvbackup
-mount | grep /backup
-df -h /backup
-```
+- README.md — this document
+- set-1.md — Set 1 (Basic Admin)
+- set-2.md — Set 2 (Disks & Security)
+- set-3.md — Set 3 (Services & Processes)
+- set-4.md — Set 4 (Networking & Systemd)
+- assets/ — images and SVG headers (optional)
+- scripts/ — helper scripts (optional)
 
 ---
 
-## Common destructive commands — use with caution
+## What's next
 
-The following commands can permanently destroy data. Always have backups or snapshots before running them on production systems:
+- Open the individual set files to begin working through tasks. Each set is self-contained and includes all commands and verification steps you need.
 
-- fdisk, parted (writing partition tables)
-- pvcreate, vgcreate, lvcreate (when used on devices with existing data)
-- mkfs.* (mkfs.ext4, mkfs.xfs)
-- dd (especially without caution)
-- rm -rf (dangerous when combined with root privileges)
-- wipefs
+If you'd like, I can:
+- Generate the SVG header with a suggested font and layout and add it to assets/
+- Create a GitHub Pages skeleton to demonstrate custom font usage
+- Export the lab tasks into a printable PDF
 
-When testing, prefer loopback files or disposable VMs.
-
----
-
-## Quick cheat-sheet: frequently used commands
-
-- Create user with home and shell:
-  ```bash
-  useradd -m -s /bin/bash username
-  passwd username
-  ```
-- Add user to supplementary group:
-  ```bash
-  usermod -aG groupname username
-  ```
-- Set directory SGID:
-  ```bash
-  chmod 2775 /shared
-  ```
-- Set an ACL:
-  ```bash
-  setfacl -m u:anna:rw /shared/report.txt
-  getfacl /shared/report.txt
-  ```
-- Create LV and mount:
-  ```bash
-  pvcreate /dev/sdb
-  vgcreate vgclass /dev/sdb
-  lvcreate -L 2G -n lvbackup vgclass
-  mkfs.ext4 /dev/vgclass/lvbackup
-  mount /dev/vgclass/lvbackup /backup
-  ```
-- Firewall (firewalld):
-  ```bash
-  firewall-cmd --permanent --add-port=443/tcp
-  firewall-cmd --reload
-  ```
-- SELinux:
-  ```bash
-  getenforce
-  setenforce 0   # not persistent
-  ```
-- Systemd:
-  ```bash
-  systemctl enable --now service
-  systemctl status service
-  systemctl list-unit-files --type=service --state=enabled
-  ```
-
----
-
-## Best practices & exam tips
-
-- Practice inside snapshots or throwaway VMs. Roll back often.
-- Memorize the verification commands — examiners expect you to show the correct system state.
-- Read man pages: `man useradd`, `man chage`, `man setfacl`, `man systemctl`.
-- Time management: in an exam, attempt quick tasks first (user creation, basic file perms) and save partitions/LVM for later.
-- Understand the difference between ownership, permission bits, and ACLs.
-- Know how to read logs: `journalctl -u <service>` and `journalctl -xe`.
-
----
-
-## Troubleshooting & debugging tips
-
-- Service not starting? `systemctl status <unit>` then `journalctl -u <unit> --no-pager`.
-- Mount or fstab issue? Run `mount -a` and check `/etc/fstab` entries and `dmesg` for kernel messages.
-- LVM issues? `pvs`, `vgs`, `lvs` show states; `pvdisplay`, `vgdisplay`, `lvdisplay` give details.
-- SELinux denials? Check `ausearch -m AVC -ts recent` or `journalctl -t setroubleshoot` (if installed) and `sealert -a /var/log/audit/audit.log`.
-- Disk/partitioning mistakes: if you accidentally overwrite a partition table, stop and restore from snapshot/backups.
-
----
-
-## Contributing
-
-Contributions are welcome. Suggested contribution workflow:
-1. Fork the repository.
-2. Create a branch for your changes: `git checkout -b feature/add-examples`
-3. Add or improve tasks, add safety notes or scripts that create safe loop devices for testing.
-4. Submit a pull request with a clear description of your changes.
-
-Please avoid adding destructive automation without safeguards (e.g., ensure scripts check for environment or require confirmation).
-
----
-
-## License & Contact
-
-- License: Add a LICENSE file in this repository (for example, MIT or CC-BY-SA) depending on your preferred licensing.
-- Contact / author: cdldevnew (GitHub)
-
----
-
-Thank you for using this lab repository. Practice frequently, use snapshots, and focus on understanding the why behind each command — that will make the tasks stick and prepare you for real-world administration or certification exams.
+Tell me which of these you'd prefer next and I will add it to the repository.
